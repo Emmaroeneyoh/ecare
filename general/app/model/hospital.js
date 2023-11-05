@@ -74,13 +74,28 @@ const retrievesinglehospitalModel = async (data, res) => {
 
 const hospitaladdcategoryModel = async (data, res) => {
     try {
-      const {hospitalid, categoryid  } = data;
-      const form = await HospitalModel.findByIdAndUpdate(hospitalid, {
-        $push: {
-          category: { categoryid },
-        },
+      const {hospitalid, category  } = data;
+      HospitalModel.findById(hospitalid, (err, document) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      
+        // Assuming there's an array field called 'items' in your document
+        category.forEach((item) => {
+          document.category.push(item); // Add each item to the 'items' array
+        });
+      
+        // Save the updated document
+        document.save((saveErr) => {
+          if (saveErr) {
+            console.error(saveErr);
+          } else {
+            console.log('Items added to the document successfully.');
+          }
+        });
       });
-      return form;
+      return 'success';
     } catch (error) {
       console.log("error", error);
       return error.message;
@@ -103,5 +118,5 @@ const hospitaladdcategoryModel = async (data, res) => {
 module.exports = {
   createhospitalModel,
   updatehospitalModel,
-  retrievesinglehospitalModel,
+  retrievesinglehospitalModel, hospitaladdcategoryModel
 };
