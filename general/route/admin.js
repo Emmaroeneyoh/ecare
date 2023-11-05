@@ -7,7 +7,7 @@ const {
   retrievesinglecategoryController,
   retrieveallcategoryController,
 } = require("../app/controller/category");
-const { createhospitalController, updatehospitalController, deletehospitalController, retrievesinglehospitalController, retrieveallhospitalController, hospitaladdcategoryController } = require("../app/controller/hospital");
+const { createhospitalController, updatehospitalController, deletehospitalController, retrievesinglehospitalController, retrieveallhospitalController, hospitaladdcategoryController, hospitalremovecategoryController } = require("../app/controller/hospital");
 const {
   createwardController,
   updatewardController,
@@ -131,6 +131,12 @@ router.post(
     addhospitalcategoryValidation,
     admin_check_token,
     hospitaladdcategoryController
+  );
+router.post(
+    "/hospital/remove/category",
+    addhospitalcategoryValidation,
+    admin_check_token,
+    hospitalremovecategoryController
   );
 
 module.exports = router;

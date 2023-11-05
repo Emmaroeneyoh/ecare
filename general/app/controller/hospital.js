@@ -5,6 +5,7 @@ const {
   updatehospitalModel,
   retrievesinglehospitalModel,
   hospitaladdcategoryModel,
+  hospitalremovecategoryModel,
 } = require("../model/hospital");
 
 const createhospitalController = async (req, res, next) => {
@@ -192,15 +193,27 @@ const hospitaladdcategoryController = async (req, res, next) => {
       handleError(error.message)(res);
     }
   };
-  const transitremoveagencyController = async (req, res, next) => {
-    const { transitid, agencyid } = req.body;
+  
+const hospitalremovecategoryController = async (req, res, next) => {
+    const { hospitalid, category } = req.body;
     try {
+    //   const hospital = await HospitalModel.findById(hospitalid)
+    //   const agency = hospital.category
+    //   const checkagency = agency.find((x) => { return x.categoryid == categoryid })
+    //   if (checkagency) {
+    //     return res.status(400).json({
+    //       status_code: 400,
+    //       status: false,
+    //       message: "transit already existed",
+    //       data: [],
+    //       error: "transit already existed",
+    //     });
+    //   }
       const data = {
-        transitid,
-        agencyid,
+        hospitalid, category
       };
   
-      let trainee = await transitremoveagencyModel(data, res);
+      let trainee = await hospitalremovecategoryModel(data, res);
   
       return res.status(200).json({
         status_code: 200,
@@ -213,11 +226,11 @@ const hospitaladdcategoryController = async (req, res, next) => {
       handleError(error.message)(res);
     }
   };
-
+  
 module.exports = {
   createhospitalController,
   deletehospitalController,
   updatehospitalController,
   retrieveallhospitalController,
-  retrievesinglehospitalController, hospitaladdcategoryController
+  retrievesinglehospitalController, hospitaladdcategoryController , hospitalremovecategoryController
 };

@@ -75,38 +75,9 @@ const retrievesinglehospitalModel = async (data, res) => {
 const hospitaladdcategoryModel = async (data, res) => {
     try {
       const {hospitalid, category  } = data;
-      HospitalModel.findById(hospitalid, (err, document) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-      
-        // Assuming there's an array field called 'items' in your document
-        category.forEach((item) => {
-          document.category.push(item); // Add each item to the 'items' array
-        });
-      
-        // Save the updated document
-        document.save((saveErr) => {
-          if (saveErr) {
-            console.error(saveErr);
-          } else {
-            console.log('Items added to the document successfully.');
-          }
-        });
-      });
-      return 'success';
-    } catch (error) {
-      console.log("error", error);
-      return error.message;
-    }
-  };
-  const transitremoveagencyModel = async (data, res) => {
-    try {
-      const { agencyid, transitid } = data;
-      const form = await TransitModel.findByIdAndUpdate(transitid, {
-        $pull: {
-          agency: { _id :agencyid },
+      const form = await HospitalModel.findByIdAndUpdate(hospitalid, {
+        $push: {
+          category
         },
       });
       return form;
@@ -115,8 +86,26 @@ const hospitaladdcategoryModel = async (data, res) => {
       return error.message;
     }
   };
+const hospitalremovecategoryModel = async (data, res) => {
+    try {
+      const {hospitalid, category  } = data;
+        const form = category.forEach(async (item) => {
+            console.log(item)
+         await   HospitalModel.findByIdAndUpdate(hospitalid, {
+                $pull: {
+                  category : {_id:item._id}
+                },
+              });
+      });
+      return form;
+    } catch (error) {
+      console.log("error", error);
+      return error.message;
+    }
+  };
+
 module.exports = {
   createhospitalModel,
   updatehospitalModel,
-  retrievesinglehospitalModel, hospitaladdcategoryModel
+  retrievesinglehospitalModel,hospitaladdcategoryModel , hospitalremovecategoryModel
 };
