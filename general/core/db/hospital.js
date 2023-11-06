@@ -37,6 +37,16 @@ const Hospitalschema = new schema({
     },
           },
         ],
+    },
+    image: {
+        default: [],
+        type: [
+          {
+            url: {
+              type: String,
+            },
+          },
+        ],
       },
        
        

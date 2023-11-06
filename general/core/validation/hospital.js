@@ -13,6 +13,7 @@ const createhospitalValidation = (req, res, next) => {
     address: joi.string().required(),
     ward: joi.string().required(),
     category: joi.array().required(),
+    image: joi.array().required(),
   });
   const { error } = schema.validate(req.body);
   if (error) {
@@ -75,8 +76,40 @@ const addhospitalcategoryValidation = (req, res, next) => {
   return next();
 };
 
+const addhospitalimageValidation = (req, res, next) => {
+  const schema = joi.object({
+    adminid: joi.string().required(),
+    hospitalid: joi.string().required(),
+    url: joi.string().required(),
+  });
+  const { error } = schema.validate(req.body);
+  if (error) {
+    let err = error.details[0].message;
+    // let errlen = err.split(' ')
+    // console.log('this is length ' , errlen.length)
+    handleError(err)(res);
+  }
+  return next();
+};
+const removehospitalimageValidation = (req, res, next) => {
+  const schema = joi.object({
+    adminid: joi.string().required(),
+    hospitalid: joi.string().required(),
+    urlid: joi.string().required(),
+  });
+  const { error } = schema.validate(req.body);
+  if (error) {
+    let err = error.details[0].message;
+    // let errlen = err.split(' ')
+    // console.log('this is length ' , errlen.length)
+    handleError(err)(res);
+  }
+  return next();
+};
 module.exports = {
   retrievedeletehospitalValidation,
   createhospitalValidation,
-  updatehospitalValidation, addhospitalcategoryValidation
+  updatehospitalValidation,
+  addhospitalcategoryValidation,
+  removehospitalimageValidation, addhospitalimageValidation
 };

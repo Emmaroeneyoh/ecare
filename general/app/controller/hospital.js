@@ -6,6 +6,8 @@ const {
   retrievesinglehospitalModel,
   hospitaladdcategoryModel,
   hospitalremovecategoryModel,
+  hospitalremoveimageModel,
+  hospitaladdimageModel,
 } = require("../model/hospital");
 
 const createhospitalController = async (req, res, next) => {
@@ -19,6 +21,7 @@ const createhospitalController = async (req, res, next) => {
     type,
     ward,
     category,
+    image,
   } = req.body;
   const hospitalname = name.toLowerCase();
   try {
@@ -41,7 +44,9 @@ const createhospitalController = async (req, res, next) => {
       facility_type,
       type,
       hospitalname,
-      ward,category
+      ward,
+      category,
+      image,
     };
 
     let trainee = await createhospitalModel(data, res);
@@ -66,7 +71,8 @@ const updatehospitalController = async (req, res, next) => {
     address,
     facility_type,
     type,
-    hospitalid, ward
+    hospitalid,
+    ward,
   } = req.body;
   const hospitalname = name.toLowerCase();
   try {
@@ -91,7 +97,8 @@ const updatehospitalController = async (req, res, next) => {
       facility_type,
       type,
       hospitalname,
-      hospitalid, ward
+      hospitalid,
+      ward,
     };
 
     let trainee = await updatehospitalModel(data, res);
@@ -161,9 +168,52 @@ const retrieveallhospitalController = async (req, res, next) => {
   }
 };
 
+const hospitaladdimageController = async (req, res, next) => {
+  const { hospitalid, url } = req.body;
+  try {
+    const data = {
+      hospitalid,
+      url,
+    };
+
+    let trainee = await hospitaladdimageModel(data, res);
+
+    return res.status(200).json({
+      status_code: 200,
+      status: true,
+      message: "login process successful",
+      data: trainee,
+    });
+  } catch (error) {
+    console.log(error);
+    handleError(error.message)(res);
+  }
+};
+const hospitalremoveimageController = async (req, res, next) => {
+  const { hospitalid, urlid } = req.body;
+  try {
+    const data = {
+      hospitalid,
+      urlid,
+    };
+
+    let trainee = await hospitalremoveimageModel(data, res);
+
+    return res.status(200).json({
+      status_code: 200,
+      status: true,
+      message: "login process successful",
+      data: trainee,
+    });
+  } catch (error) {
+    console.log(error);
+    handleError(error.message)(res);
+  }
+};
+
 const hospitaladdcategoryController = async (req, res, next) => {
-    const { hospitalid, category } = req.body;
-    try {
+  const { hospitalid, category } = req.body;
+  try {
     //   const hospital = await HospitalModel.findById(hospitalid)
     //   const agency = hospital.category
     //   const checkagency = agency.find((x) => { return x.categoryid == categoryid })
@@ -176,27 +226,28 @@ const hospitaladdcategoryController = async (req, res, next) => {
     //       error: "transit already existed",
     //     });
     //   }
-      const data = {
-        hospitalid, category
-      };
-  
-      let trainee = await hospitaladdcategoryModel(data, res);
-  
-      return res.status(200).json({
-        status_code: 200,
-        status: true,
-        message: "login process successful",
-        data: trainee,
-      });
-    } catch (error) {
-      console.log(error);
-      handleError(error.message)(res);
-    }
-  };
-  
+    const data = {
+      hospitalid,
+      category,
+    };
+
+    let trainee = await hospitaladdcategoryModel(data, res);
+
+    return res.status(200).json({
+      status_code: 200,
+      status: true,
+      message: "login process successful",
+      data: trainee,
+    });
+  } catch (error) {
+    console.log(error);
+    handleError(error.message)(res);
+  }
+};
+
 const hospitalremovecategoryController = async (req, res, next) => {
-    const { hospitalid, category } = req.body;
-    try {
+  const { hospitalid, category } = req.body;
+  try {
     //   const hospital = await HospitalModel.findById(hospitalid)
     //   const agency = hospital.category
     //   const checkagency = agency.find((x) => { return x.categoryid == categoryid })
@@ -209,28 +260,31 @@ const hospitalremovecategoryController = async (req, res, next) => {
     //       error: "transit already existed",
     //     });
     //   }
-      const data = {
-        hospitalid, category
-      };
-  
-      let trainee = await hospitalremovecategoryModel(data, res);
-  
-      return res.status(200).json({
-        status_code: 200,
-        status: true,
-        message: "login process successful",
-        data: trainee,
-      });
-    } catch (error) {
-      console.log(error);
-      handleError(error.message)(res);
-    }
-  };
-  
+    const data = {
+      hospitalid,
+      category,
+    };
+
+    let trainee = await hospitalremovecategoryModel(data, res);
+
+    return res.status(200).json({
+      status_code: 200,
+      status: true,
+      message: "login process successful",
+      data: trainee,
+    });
+  } catch (error) {
+    console.log(error);
+    handleError(error.message)(res);
+  }
+};
+
 module.exports = {
   createhospitalController,
   deletehospitalController,
   updatehospitalController,
   retrieveallhospitalController,
-  retrievesinglehospitalController, hospitaladdcategoryController , hospitalremovecategoryController
+  retrievesinglehospitalController,
+  hospitaladdcategoryController,
+  hospitalremovecategoryController, hospitaladdimageController , hospitalremoveimageController
 };
