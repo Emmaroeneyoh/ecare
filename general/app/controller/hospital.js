@@ -77,8 +77,9 @@ const updatehospitalController = async (req, res, next) => {
   const hospitalname = name.toLowerCase();
   try {
     const hospital = await HospitalModel.findOne({ name: hospitalname });
+    const catid = hospital._id.toHexString();
     if (hospital) {
-      if (hospital._id !== hospitalid) {
+      if (catid !== hospitalid) {
         return res.status(400).json({
           status_code: 400,
           status: false,

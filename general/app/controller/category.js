@@ -42,8 +42,11 @@ const updatecategoryController = async (req, res, next) => {
     const categoryname = category.toLowerCase();
     try {
       const cat = await CategoryModel.findOne({ category: categoryname });
+      console.log(cat._id, categoryid)
+      const catid = cat._id.toHexString();
+
       if (cat) {
-        if (cat._id !== categoryid) {
+        if (catid !== categoryid) {
           return res.status(400).json({
             status_code: 400,
             status: false,

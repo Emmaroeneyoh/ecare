@@ -39,8 +39,9 @@ const updatewardController = async (req, res, next) => {
   const wardname = ward.toLowerCase();
   try {
     const ward = await WardModel.findOne({ ward: wardname });
+    const catid = ward._id.toHexString();
     if (ward) {
-      if (ward._id !== wardid) {
+      if (catid !== wardid) {
         return res.status(400).json({
           status_code: 400,
           status: false,
