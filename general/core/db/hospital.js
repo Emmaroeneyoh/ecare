@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const schema = mongoose.Schema
 
+
+
 const Hospitalschema = new schema({
        name: {
             type:String,
