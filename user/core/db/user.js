@@ -12,7 +12,7 @@ const Userschema = new schema({
         name:{
             type:String
         },
-       
+        
     createdAt : {
         type: Date,
         default:Date.now

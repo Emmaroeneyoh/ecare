@@ -15,7 +15,7 @@ const filter_user_hospital_model = async (datas, res) => {
             path: "ward",
             select: "name",
           });
-          const categories = await CategoryModel.find().select('cateogry')
+          const categories = await CategoryModel.find()
           const ward = await WardModel.find()
         const filterdata = {
           hospital , categories , ward
