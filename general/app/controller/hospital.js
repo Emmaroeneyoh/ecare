@@ -21,7 +21,7 @@ const createhospitalController = async (req, res, next) => {
     type,
     ward,
     category,
-    image,
+    image, phone
   } = req.body;
   const hospitalname = name.toLowerCase();
   try {
@@ -46,7 +46,7 @@ const createhospitalController = async (req, res, next) => {
       hospitalname,
       ward,
       category,
-      image,
+      image, phone
     };
 
     let trainee = await createhospitalModel(data, res);
@@ -72,7 +72,7 @@ const updatehospitalController = async (req, res, next) => {
     facility_type,
     type,
     hospitalid,
-    ward,
+    ward, phone
   } = req.body;
   const hospitalname = name.toLowerCase();
   try {
@@ -99,7 +99,7 @@ const updatehospitalController = async (req, res, next) => {
       type,
       hospitalname,
       hospitalid,
-      ward,
+      ward, phone
     };
 
     let trainee = await updatehospitalModel(data, res);

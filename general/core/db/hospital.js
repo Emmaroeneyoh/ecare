@@ -7,6 +7,9 @@ const Hospitalschema = new schema({
        name: {
             type:String,
         },
+       phone: {
+            type:String,
+        },
         easting:{
             type:String
         },

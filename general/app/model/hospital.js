@@ -13,10 +13,10 @@ const createhospitalModel = async (data, res) => {
       hospitalname,
       ward,
       category,
-      image,
+      image, phone
     } = data;
     const form = await new HospitalModel({
-      easting,
+      easting, phone,
       ward,
       northing,
       ownership,
@@ -48,11 +48,11 @@ const updatehospitalModel = async (data, res) => {
       type,
       hospitalname,
       hospitalid,
-      ward,
+      ward,phone
     } = data;
     const form = await HospitalModel.findByIdAndUpdate(hospitalid, {
       $set: {
-        easting,
+        easting, phone ,
         ward,
         northing,
         ownership,

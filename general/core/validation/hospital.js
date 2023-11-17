@@ -5,6 +5,7 @@ const createhospitalValidation = (req, res, next) => {
   const schema = joi.object({
     adminid: joi.string().required(),
     name: joi.string().required(),
+    phone: joi.string().required(),
     easting: joi.string().required(),
     northing: joi.string().required(),
     ownership: joi.string().required(),
@@ -29,6 +30,7 @@ const updatehospitalValidation = (req, res, next) => {
     adminid: joi.string().required(),
     hospitalid: joi.string().required(),
     name: joi.string().required(),
+    phone: joi.string().required(),
     easting: joi.string().required(),
     northing: joi.string().required(),
     ownership: joi.string().required(),
