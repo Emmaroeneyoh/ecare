@@ -11,7 +11,7 @@ const createwardValidation = (req, res, next) => {
       let err = error.details[0].message;
       // let errlen = err.split(' ')
       // console.log('this is length ' , errlen.length)
-      handleError(err)(res);
+     return handleError(err)(res);
     }
     return next();
   };
@@ -26,7 +26,7 @@ const updatewardValidation = (req, res, next) => {
       let err = error.details[0].message;
       // let errlen = err.split(' ')
       // console.log('this is length ' , errlen.length)
-      handleError(err)(res);
+     return handleError(err)(res);
     }
     return next();
   };
@@ -40,7 +40,7 @@ const retrievedeletewardValidation = (req, res, next) => {
       let err = error.details[0].message;
       // let errlen = err.split(' ')
       // console.log('this is length ' , errlen.length)
-      handleError(err)(res);
+     return handleError(err)(res);
     }
     return next();
   };

@@ -21,7 +21,7 @@ const createhospitalValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+    return handleError(err)(res);
   }
   return next();
 };
@@ -44,7 +44,7 @@ const updatehospitalValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+    return handleError(err)(res);
   }
   return next();
 };
@@ -58,7 +58,7 @@ const retrievedeletehospitalValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+    return handleError(err)(res);
   }
   return next();
 };
@@ -73,7 +73,7 @@ const addhospitalcategoryValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+    return handleError(err)(res);
   }
   return next();
 };
@@ -89,7 +89,7 @@ const addhospitalimageValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+    return handleError(err)(res);
   }
   return next();
 };
@@ -104,7 +104,7 @@ const removehospitalimageValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+    return handleError(err)(res);
   }
   return next();
 };
