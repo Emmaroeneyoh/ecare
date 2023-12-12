@@ -33,7 +33,7 @@ const filter_user_hospital_model = async (datas, res) => {
       categories,
       ward,
     };
-    return filterdata;
+    return filterdata;    
   } catch (error) {
     console.log(error);
     handleError(error.message)(res);

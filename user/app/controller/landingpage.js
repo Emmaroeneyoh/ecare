@@ -25,7 +25,7 @@ const user_hospital_controller = async (req, res, next) => {
       query.$and.push({ type: type });
     }
     if (category != "") {
-      query.$and.push({ category: category });
+      query.$and.push({ 'category.categoryid': category });
     }
     if (ward != "") {
       query.$and.push({ ward: ward });
